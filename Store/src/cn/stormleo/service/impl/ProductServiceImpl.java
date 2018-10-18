@@ -2,7 +2,7 @@ package cn.stormleo.service.impl;
 
 import cn.stormleo.dao.ProductDao;
 import cn.stormleo.dao.impl.ProductDaoImpl;
-import cn.stormleo.domain.PageModel02;
+import cn.stormleo.domain.PageModel;
 import cn.stormleo.domain.Product;
 import cn.stormleo.service.ProductService;
 
@@ -26,21 +26,27 @@ public class ProductServiceImpl implements ProductService {
         return productDao.findProductById(pid);
     }
 
+    /**
+     * 分页显示产品，传入 分类id cid和当前页数 curNum
+     * @param cid
+     * @param curNum
+     * @return
+     * @throws SQLException
+     */
     @Override
-    public PageModel02 findProductsByCidWithPage(String cid, int curNum) throws SQLException {
+    public PageModel findProductsByCidWithPage(String cid, int curNum) throws SQLException {
 
-        System.out.println("进入findProductServlet");
 
         // 创建 PageModel
         int totalRecords=productDao.findTotalRecords(cid);
-        PageModel02 pageModel02=new PageModel02(curNum,totalRecords,12);
+        PageModel pageModel =new PageModel(curNum,totalRecords,12);
 
         // 关联集合 select * from product where cid=? limit ?,?
-        List list=productDao.findProductsByCidWithPage(cid,pageModel02.getStartIndex(),pageModel02.getPageSize());
-        pageModel02.setRecords(list);
+        List list=productDao.findProductsByCidWithPage(cid, pageModel.getStartIndex(), pageModel.getPageSize());
+        pageModel.setRecords(list);
 
-        pageModel02.setUrl("ProductServlet?method=findProductsByCidWithPage&cid="+cid);
-        return pageModel02;
+        pageModel.setUrl("ProductServlet?method=findProductsByCidWithPage&cid="+cid);
+        return pageModel;
     }
 
 }

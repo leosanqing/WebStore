@@ -1,6 +1,6 @@
 package cn.stormleo.servlet;
 
-import cn.stormleo.domain.PageModel02;
+import cn.stormleo.domain.PageModel;
 import cn.stormleo.domain.Product;
 import cn.stormleo.service.ProductService;
 import cn.stormleo.service.impl.ProductServiceImpl;
@@ -33,7 +33,7 @@ public class ProductServlet extends BaseServlet {
         // 调用业务层功能，查询分页下的商品信息
         // 返回PageModel 对象（1.当前商品信息，2.分页3.url）
         ProductService productService = new ProductServiceImpl();
-        PageModel02 pm = productService.findProductsByCidWithPage(cid,curNum);
+        PageModel pm = productService.findProductsByCidWithPage(cid,curNum);
 
         // 将 pm 存入session中
         request.getSession().setAttribute("page",pm);

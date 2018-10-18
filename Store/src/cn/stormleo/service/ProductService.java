@@ -1,6 +1,6 @@
 package cn.stormleo.service;
 
-import cn.stormleo.domain.PageModel02;
+import cn.stormleo.domain.PageModel;
 import cn.stormleo.domain.Product;
 
 import java.sql.SQLException;
@@ -13,5 +13,5 @@ public interface ProductService {
 
     Product findProductById(String pid) throws SQLException;
 
-    PageModel02 findProductsByCidWithPage(String cid, int curNum) throws SQLException;
+    PageModel findProductsByCidWithPage(String cid, int curNum) throws SQLException;
 }
