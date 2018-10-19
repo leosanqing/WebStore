@@ -44,4 +44,19 @@ public class CartServlet extends BaseServlet {
         response.sendRedirect("/jsp/cart.jsp");
         return null;
     }
+    public String removeCartItem(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        Cart cart= (Cart) request.getSession().getAttribute("cart");
+        String  pid=request.getParameter("pid");
+        cart.removeItem(pid);
+        response.sendRedirect("/jsp/cart.jsp");
+        return null;
+        }
+
+    public String clearCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        Cart cart= (Cart) request.getSession().getAttribute("cart");
+        cart.clear();
+        response.sendRedirect("/jsp/cart.jsp");
+        return null;
+
+    }
 }

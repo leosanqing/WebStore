@@ -86,7 +86,7 @@
 										<span class="subtotal">￥${item.total}</span>
 									</td>
 									<td>
-										<a href="javascript:;" class="delete">删除</a>
+										<a href="javascript:;" id="${item.product.pid}" class="delete">删除</a>
 									</td>
 								</tr>
 							</c:forEach>
@@ -102,7 +102,7 @@
 						</em> 赠送积分: <em style="color:#ff6600;">${cart.total}</em>&nbsp; 商品金额: <strong style="color:#ff6600;">￥${cart.total}元</strong>
 					</div>
 					<div style="text-align:right;margin-top:10px;margin-bottom:10px;">
-						<a href="${pageContext.request.contextPath}/jsp/order_info.jsp" id="clear" class="clear">清空购物车</a>
+						<a href="${pageContext.request.contextPath}/CartServlet?method=clearCart" id="clear" class="clear">清空购物车</a>
 						<a href="${pageContext.request.contextPath}/jsp/order_info.jsp">
 								<%--提交表单 --%>
 							<input type="submit" width="100" value="提交订单" name="submit" border="0" style="background: url('${pageContext.request.contextPath}/img/register.gif') no-repeat scroll 0 0 rgba(0, 0, 0, 0);
@@ -116,5 +116,17 @@
 		<%@ include file="bottom.jsp"%>
 
 	</body>
+
+    <%--移除购物项功能--%>
+    <script>
+        $(function () {
+            $(".delete").click(function () {
+                confirm("确认移除吗");
+                var pid=this.id;
+                window.location.href="/CartServlet?method=removeCartItem&pid="+pid;
+            });
+        });
+
+    </script>
 
 </html>
