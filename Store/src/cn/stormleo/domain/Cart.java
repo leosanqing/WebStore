@@ -66,7 +66,7 @@ public class Cart {
     }
 
 
-    public Collection getCartItems(){
+    public Collection<CartItem> getCartItems(){
         return map.values();
     }
 }
