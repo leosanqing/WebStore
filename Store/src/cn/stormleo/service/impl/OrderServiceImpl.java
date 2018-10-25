@@ -10,7 +10,9 @@ import cn.stormleo.service.OrderService;
 import cn.stormleo.utils.JDBCUtils;
 import com.sun.org.apache.xpath.internal.operations.Or;
 
+import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
+import java.util.List;
 
 public class OrderServiceImpl implements OrderService {
     @Override
@@ -30,7 +32,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public PageModel findMyOrderWithPage(User user, int curNum) throws SQLException {
+    public PageModel findMyOrderWithPage(User user, int curNum) throws SQLException, InvocationTargetException, IllegalAccessException {
 
         OrderDao orderDao=new OrderDaoImpl();
         // 查询全部数据条数
@@ -38,8 +40,24 @@ public class OrderServiceImpl implements OrderService {
 
         //创建PageModel
         PageModel pageModel=new PageModel(curNum,totalRecord,3);
-        orderDao.findMyOrderWithPage(user,pageModel.getStartIndex(),pageModel.getPageSize());
+        List list= orderDao.findMyOrderWithPage(user,pageModel.getStartIndex(),pageModel.getPageSize());
 
-        return null;
+        pageModel.setRecords(list);
+
+        pageModel.setUrl("OrderServlet?method=findMyOrderWithPage");
+
+        return pageModel;
+    }
+
+    @Override
+    public Order findOrderByOrderId(String oid) throws IllegalAccessException, SQLException, InvocationTargetException {
+        OrderDao orderDao=new OrderDaoImpl();
+        return orderDao.findOrderByOrderId(oid);
+    }
+
+    @Override
+    public void updateInfo(Order order) throws SQLException {
+        OrderDao orderDao=new OrderDaoImpl();
+        orderDao.updateInfo(order);
     }
 }

@@ -3,8 +3,8 @@
 	<%--分页显示的开始 --%>
     	<div style="text-align:center">
     		共${page.totalPageNum}页/第${page.currentPageNum}页
-    		
-    		<a href="${pageContext.request.contextPath}/${page.url}&num=1">首页</a>
+
+			<a href="${pageContext.request.contextPath}/${page.url}&num=1">首页</a>
     		<a href="${pageContext.request.contextPath}/${page.url}&num=${page.prePageNum}">上一页</a>
     		<%--显示的页码，使用forEach遍历显示的页面 --%>
     		<c:forEach begin="${page.startPage}" end="${page.endPage}" var="pagenum">

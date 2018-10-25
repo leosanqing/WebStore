@@ -49,4 +49,19 @@ public class ProductServiceImpl implements ProductService {
         return pageModel;
     }
 
+    @Override
+    public PageModel getAllProductWithPage(int curNum) throws SQLException {
+        int totalNum=productDao.findTotalRecords();
+        PageModel pageModel=new PageModel(curNum,totalNum,5);
+        List<Product> list=productDao.findProductsByCidWithPage(pageModel.getStartIndex(),pageModel.getPageSize());
+        pageModel.setRecords(list);
+        pageModel.setUrl("AdminCategoryServlet?method=getAllProductWithPage");
+        return pageModel;
+    }
+
+    @Override
+    public void saveProduct(Product product) throws SQLException {
+        productDao.saveProduct(product);
+    }
+
 }

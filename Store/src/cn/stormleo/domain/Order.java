@@ -16,6 +16,7 @@ public class Order {
 
     private User user;
 
+    private List<OrderItem> list =new ArrayList<>();
 
     public List<OrderItem> getList() {
         return list;
@@ -25,7 +26,6 @@ public class Order {
         this.list = list;
     }
 
-    private List<OrderItem> list =new ArrayList<>();
 
     @Override
     public String toString() {

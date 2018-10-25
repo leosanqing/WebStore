@@ -16,4 +16,11 @@ public class CategoryDaoImpl implements CategoryDao {
         String sql="select * from category";
        return queryRunner.query(sql,new BeanListHandler<Category>(Category.class));
     }
+
+    @Override
+    public void addCategory(Category category) throws SQLException {
+        QueryRunner queryRunner=new QueryRunner(JDBCUtils.getDataSource());
+        String sql="insert into category values(?,?)";
+        queryRunner.update(sql,category.getCid(),category.getCname());
+    }
 }
