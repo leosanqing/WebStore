@@ -1,4 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <HTML>
 	<HEAD>
 		<meta http-equiv="Content-Language" content="zh-cn">
@@ -59,27 +60,40 @@
 										订单详情
 									</td>
 								</tr>
+								<c:forEach items="${allOrder}" var="o" varStatus="status">
 										<tr onmouseover="this.style.backgroundColor = 'white'"
 											onmouseout="this.style.backgroundColor = '#F5FAFE';">
 											<td style="CURSOR: hand; HEIGHT: 22px" align="center"
 												width="18%">
-												1
+												${status.count}
 											</td>
 											<td style="CURSOR: hand; HEIGHT: 22px" align="center"
 												width="17%">
-												BH1234356
+												${o.oid}
 											</td>
 											<td style="CURSOR: hand; HEIGHT: 22px" align="center"
 												width="17%">
-												998
+												${o.total}
 											</td>
 											<td style="CURSOR: hand; HEIGHT: 22px" align="center"
 												width="17%">
-												张XX
+												${o.name}
 											</td>
 											<td style="CURSOR: hand; HEIGHT: 22px" align="center"
 												width="17%">
-													1=未付款、2=发货、3=已发货、4=订单完成
+												<c:if test="${o.state==1}">
+													1=未付款
+												</c:if>
+												<c:if test="${o.state==2}">
+													未发货
+												</c:if>
+
+												<c:if test="${o.state==2}">
+													已发货
+												</c:if>
+												<c:if test="${o.state==2}">
+													订单完成
+												</c:if>
 											</td>
 											<td align="center" style="HEIGHT: 22px">
 												<input type="button" value="订单详情" id="but${o.oid}" onclick="showDetail('${o.oid}')"/>
@@ -89,6 +103,7 @@
 											</td>
 							
 										</tr>
+								</c:forEach>
 							</table>
 						</td>
 					</tr>

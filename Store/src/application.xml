@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<beans>
+    <bean id="CategoryDao" class="cn.stormleo.dao.impl.CategoryDaoImpl"></bean>
+    <bean id="OrderDao" class="cn.stormleo.dao.impl.OrderDaoImpl"></bean>
+    <bean id="ProductDao" class="cn.stormleo.dao.impl.ProductDaoImpl"></bean>
+</beans>

@@ -5,12 +5,13 @@ import cn.stormleo.dao.impl.ProductDaoImpl;
 import cn.stormleo.domain.PageModel;
 import cn.stormleo.domain.Product;
 import cn.stormleo.service.ProductService;
+import cn.stormleo.utils.BeanFactory;
 
 import java.sql.SQLException;
 import java.util.List;
 
 public class ProductServiceImpl implements ProductService {
-    ProductDao productDao = new ProductDaoImpl();
+    ProductDao productDao = (ProductDao) BeanFactory.createObject("ProductDao");
     @Override
     public List<Product> findHotProducts() throws SQLException {
         return productDao.findHotProducts();

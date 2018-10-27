@@ -20,4 +20,8 @@ public interface OrderDao {
     Order findOrderByOrderId(String oid) throws SQLException, InvocationTargetException, IllegalAccessException;
 
     void updateInfo(Order order) throws SQLException;
+
+    List<Order> findAllOrder() throws SQLException;
+
+    List<Order> findAllOrder(String state)throws SQLException;
 }
